@@ -173,213 +173,221 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // Calculate the screen's aspect ratio
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenAspectRatio = screenWidth / screenHeight;
+
+    // Set a desired aspect ratio for the children
+    double desiredChildAspectRatio = 16 / 25; // Change this to your desired aspect ratio
+
     return Scaffold(
       body: Column(
         children: [
-          Expanded(
-            child: Container(
-              color: Theme.of(context).primaryColor,
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  _number,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineMedium!
-                      .copyWith(color: Colors.white),
-                ),
+          Container(
+            height: screenHeight/5,
+            color: Theme.of(context).primaryColor,
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                _number,
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineMedium!
+                    .copyWith(color: Colors.white),
               ),
             ),
           ),
-          GridView.count(
-            padding: const EdgeInsets.all(0),
-            shrinkWrap: true,
-            crossAxisCount: 4,
-            crossAxisSpacing: 0, // Set spacing to 0
-            mainAxisSpacing: 0,  // Set spacing to 0
-            children: <Widget>[
-              CalculatorButton(
-                backgroundColor: Theme.of(context).primaryColorLight,
-                foregroundColor: Theme.of(context).primaryColorDark,
-                text: 'C',
-                onTap: () {
-                  widget.controller.onClearPressed();
-                  _updateNumber();
-                },
-              ),
-              CalculatorButton(
-                backgroundColor: Theme.of(context).primaryColorLight,
-                foregroundColor: Theme.of(context).primaryColorDark,
-                text: '+/-',
-                onTap: () {
-                  widget.controller.onOperatorPressed('+/-');
-                  _updateNumber();
-                },
-              ),
-              CalculatorButton(
-                backgroundColor: Theme.of(context).primaryColorLight,
-                foregroundColor: Theme.of(context).primaryColorDark,
-                text: '%',
-                onTap: () {
-                  widget.controller.onOperatorPressed('%');
-                  _updateNumber();
-                },
-              ),
-              CalculatorButton.Icon(
-                backgroundColor: Theme.of(context).primaryColorDark,
-                foregroundColor: Theme.of(context).primaryColorLight,
-                text: 'Backspace',
-                icon: Icons.backspace,
-                onTap: () {
-                  widget.controller.onBackspacePressed();
-                  _updateNumber();
-                },
-              ),
-              CalculatorButton(
-                backgroundColor: Colors.white,
-                foregroundColor: Theme.of(context).primaryColorDark,
-                text: '7',
-                onTap: () {
-                  widget.controller.onDigitPressed('7');
-                  _updateNumber();
-                },
-              ),
-              CalculatorButton(
-                backgroundColor: Colors.white,
-                foregroundColor: Theme.of(context).primaryColorDark,
-                text: '8',
-                onTap: () {
-                  widget.controller.onDigitPressed('8');
-                  _updateNumber();
-                },
-              ),
-              CalculatorButton(
-                backgroundColor: Colors.white,
-                foregroundColor: Theme.of(context).primaryColorDark,
-                text: '9',
-                onTap: () {
-                  widget.controller.onDigitPressed('9');
-                  _updateNumber();
-                },
-              ),
-              CalculatorButton(
-                backgroundColor: Theme.of(context).primaryColorDark,
-                foregroundColor: Theme.of(context).primaryColorLight,
-                text: '/',
-                onTap: () {
-                  widget.controller.onOperatorPressed('/');
-                  _updateNumber();
-                },
-              ),
-              CalculatorButton(
-                backgroundColor: Colors.white,
-                foregroundColor: Theme.of(context).primaryColorDark,
-                text: '4',
-                onTap: () {
-                  widget.controller.onDigitPressed('4');
-                  _updateNumber();
-                },
-              ),
-              CalculatorButton(
-                backgroundColor: Colors.white,
-                foregroundColor: Theme.of(context).primaryColorDark,
-                text: '5',
-                onTap: () {
-                  widget.controller.onDigitPressed('5');
-                  _updateNumber();
-                },
-              ),
-              CalculatorButton(
-                backgroundColor: Colors.white,
-                foregroundColor: Theme.of(context).primaryColorDark,
-                text: '6',
-                onTap: () {
-                  widget.controller.onDigitPressed('6');
-                  _updateNumber();
-                },
-              ),
-              CalculatorButton(
-                backgroundColor: Theme.of(context).primaryColorDark,
-                foregroundColor: Theme.of(context).primaryColorLight,
-                text: '×',
-                onTap: () {
-                  widget.controller.onOperatorPressed('×');
-                  _updateNumber();
-                },
-              ),
-              CalculatorButton(
-                backgroundColor: Colors.white,
-                foregroundColor: Theme.of(context).primaryColorDark,
-                text: '1',
-                onTap: () {
-                  widget.controller.onDigitPressed('1');
-                  _updateNumber();
-                },
-              ),
-              CalculatorButton(
-                backgroundColor: Colors.white,
-                foregroundColor: Theme.of(context).primaryColorDark,
-                text: '2',
-                onTap: () {
-                  widget.controller.onDigitPressed('2');
-                  _updateNumber();
-                },
-              ),
-              CalculatorButton(
-                backgroundColor: Colors.white,
-                foregroundColor: Theme.of(context).primaryColorDark,
-                text: '3',
-                onTap: () {
-                  widget.controller.onDigitPressed('3');
-                  _updateNumber();
-                },
-              ),
-              CalculatorButton(
-                backgroundColor: Theme.of(context).primaryColorDark,
-                foregroundColor: Theme.of(context).primaryColorLight,
-                text: '-',
-                onTap: () {
-                  widget.controller.onOperatorPressed('-');
-                  _updateNumber();
-                },
-              ),
-              CalculatorButton(
-                backgroundColor: Colors.white,
-                foregroundColor: Theme.of(context).primaryColorDark,
-                text: '0',
-                onTap: () {
-                  widget.controller.onDigitPressed('0');
-                  _updateNumber();
-                },
-              ),
-              CalculatorButton(
-                backgroundColor: Colors.white,
-                foregroundColor: Theme.of(context).primaryColorDark,
-                text: '.',
-                onTap: () {
-                  widget.controller.onDotPressed();
-                  _updateNumber();
-                },
-              ),
-              CalculatorButton(
-                backgroundColor: Colors.white,
-                foregroundColor: Theme.of(context).primaryColorDark,
-                text: '=',
-                onTap: () {
-                  widget.controller.onEqualsPressed();
-                  _updateNumber();
-                },
-              ),
-              CalculatorButton(
-                backgroundColor: Theme.of(context).primaryColorDark,
-                foregroundColor: Theme.of(context).primaryColorLight,
-                text: '+',
-                onTap: () {
-                  widget.controller.onOperatorPressed('+');
-                  _updateNumber();
-                },
-              ),
-            ],
+          Expanded(
+            child: GridView.count(
+              padding: const EdgeInsets.all(0),
+              shrinkWrap: false,
+              childAspectRatio: screenAspectRatio / desiredChildAspectRatio,
+              crossAxisCount: 4,
+              children: <Widget>[
+                CalculatorButton(
+                  backgroundColor: Theme.of(context).primaryColorLight,
+                  foregroundColor: Theme.of(context).primaryColorDark,
+                  text: 'C',
+                  onTap: () {
+                    widget.controller.onClearPressed();
+                    _updateNumber();
+                  },
+                ),
+                CalculatorButton(
+                  backgroundColor: Theme.of(context).primaryColorLight,
+                  foregroundColor: Theme.of(context).primaryColorDark,
+                  text: '+/-',
+                  onTap: () {
+                    widget.controller.onOperatorPressed('+/-');
+                    _updateNumber();
+                  },
+                ),
+                CalculatorButton(
+                  backgroundColor: Theme.of(context).primaryColorLight,
+                  foregroundColor: Theme.of(context).primaryColorDark,
+                  text: '%',
+                  onTap: () {
+                    widget.controller.onOperatorPressed('%');
+                    _updateNumber();
+                  },
+                ),
+                CalculatorButton.Icon(
+                  backgroundColor: Theme.of(context).primaryColorDark,
+                  foregroundColor: Theme.of(context).primaryColorLight,
+                  text: 'Backspace',
+                  icon: Icons.backspace,
+                  onTap: () {
+                    widget.controller.onBackspacePressed();
+                    _updateNumber();
+                  },
+                ),
+                CalculatorButton(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Theme.of(context).primaryColorDark,
+                  text: '7',
+                  onTap: () {
+                    widget.controller.onDigitPressed('7');
+                    _updateNumber();
+                  },
+                ),
+                CalculatorButton(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Theme.of(context).primaryColorDark,
+                  text: '8',
+                  onTap: () {
+                    widget.controller.onDigitPressed('8');
+                    _updateNumber();
+                  },
+                ),
+                CalculatorButton(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Theme.of(context).primaryColorDark,
+                  text: '9',
+                  onTap: () {
+                    widget.controller.onDigitPressed('9');
+                    _updateNumber();
+                  },
+                ),
+                CalculatorButton(
+                  backgroundColor: Theme.of(context).primaryColorDark,
+                  foregroundColor: Theme.of(context).primaryColorLight,
+                  text: '/',
+                  onTap: () {
+                    widget.controller.onOperatorPressed('/');
+                    _updateNumber();
+                  },
+                ),
+                CalculatorButton(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Theme.of(context).primaryColorDark,
+                  text: '4',
+                  onTap: () {
+                    widget.controller.onDigitPressed('4');
+                    _updateNumber();
+                  },
+                ),
+                CalculatorButton(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Theme.of(context).primaryColorDark,
+                  text: '5',
+                  onTap: () {
+                    widget.controller.onDigitPressed('5');
+                    _updateNumber();
+                  },
+                ),
+                CalculatorButton(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Theme.of(context).primaryColorDark,
+                  text: '6',
+                  onTap: () {
+                    widget.controller.onDigitPressed('6');
+                    _updateNumber();
+                  },
+                ),
+                CalculatorButton(
+                  backgroundColor: Theme.of(context).primaryColorDark,
+                  foregroundColor: Theme.of(context).primaryColorLight,
+                  text: '×',
+                  onTap: () {
+                    widget.controller.onOperatorPressed('×');
+                    _updateNumber();
+                  },
+                ),
+                CalculatorButton(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Theme.of(context).primaryColorDark,
+                  text: '1',
+                  onTap: () {
+                    widget.controller.onDigitPressed('1');
+                    _updateNumber();
+                  },
+                ),
+                CalculatorButton(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Theme.of(context).primaryColorDark,
+                  text: '2',
+                  onTap: () {
+                    widget.controller.onDigitPressed('2');
+                    _updateNumber();
+                  },
+                ),
+                CalculatorButton(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Theme.of(context).primaryColorDark,
+                  text: '3',
+                  onTap: () {
+                    widget.controller.onDigitPressed('3');
+                    _updateNumber();
+                  },
+                ),
+                CalculatorButton(
+                  backgroundColor: Theme.of(context).primaryColorDark,
+                  foregroundColor: Theme.of(context).primaryColorLight,
+                  text: '-',
+                  onTap: () {
+                    widget.controller.onOperatorPressed('-');
+                    _updateNumber();
+                  },
+                ),
+                CalculatorButton(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Theme.of(context).primaryColorDark,
+                  text: '0',
+                  onTap: () {
+                    widget.controller.onDigitPressed('0');
+                    _updateNumber();
+                  },
+                ),
+                CalculatorButton(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Theme.of(context).primaryColorDark,
+                  text: '.',
+                  onTap: () {
+                    widget.controller.onDotPressed();
+                    _updateNumber();
+                  },
+                ),
+                CalculatorButton(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Theme.of(context).primaryColorDark,
+                  text: '=',
+                  onTap: () {
+                    widget.controller.onEqualsPressed();
+                    _updateNumber();
+                  },
+                ),
+                CalculatorButton(
+                  backgroundColor: Theme.of(context).primaryColorDark,
+                  foregroundColor: Theme.of(context).primaryColorLight,
+                  text: '+',
+                  onTap: () {
+                    widget.controller.onOperatorPressed('+');
+                    _updateNumber();
+                  },
+                ),
+              ],
+            ),
           ),
         ],
       ),
